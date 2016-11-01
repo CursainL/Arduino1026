@@ -1,0 +1,46 @@
+#include "pitches.h" 
+int CanonTone[] = {
+ NOTE_E3, NOTE_G4, NOTE_C5, NOTE_E5, NOTE_B2, NOTE_G4, NOTE_B4, NOTE_D5,
+ NOTE_C3, NOTE_E4, NOTE_A4, NOTE_C5, NOTE_G2, NOTE_E4, NOTE_G4, NOTE_B4,
+ NOTE_A2, NOTE_C4, NOTE_F4, NOTE_A4, NOTE_E1, NOTE_C4, NOTE_E4, NOTE_G4,
+ NOTE_A2, NOTE_D4, NOTE_F4, NOTE_A4, NOTE_B2, NOTE_D4, NOTE_G4, NOTE_B4,
+ NOTE_E3, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5,
+ NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_G4, NOTE_F4, NOTE_G4, NOTE_F4, NOTE_F4, NOTE_G4,
+ NOTE_F4, NOTE_A4, NOTE_G4, NOTE_F4, NOTE_E4, NOTE_D4, NOTE_E4, NOTE_D4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4,
+ NOTE_F4, NOTE_A4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5,
+ NOTE_E5, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_D5, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_B4,
+ NOTE_C5, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_E4, NOTE_D4, NOTE_E4, NOTE_C5, NOTE_B4, NOTE_C5,
+ NOTE_A4, NOTE_C5, NOTE_B4, NOTE_A4, NOTE_G4, NOTE_F4, NOTE_G4, NOTE_F4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5,
+ NOTE_A4, NOTE_C5, NOTE_B4, NOTE_C5, NOTE_B4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_C5, NOTE_B4, NOTE_C5, NOTE_A4, NOTE_B4,
+ NOTE_C5,0 }; 
+int noteDurations[] = {
+ 8, 8, 8, 8, 8, 8, 8, 8,
+ 8, 8, 8, 8, 8, 8, 8, 8,
+ 8, 8, 8, 8, 8, 8, 8, 8,
+ 8, 8, 8, 8, 8, 8, 8, 8,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 8,16,16,8,16,16,16,16,16,16,16,16,16, 16,
+ 1 };
+ int toneSpeed = 1800;   // 設定音速, 我用1800ms, 即1.8 秒當全音符
+ void setup() {
+ int thisNote = 0;  // 在此使用While 而不用 for
+ while (CanonTone[thisNote] >0) {  // 當CanonTone 內的值 > 0 時 則
+int noteDuration = toneSpeed / noteDurations[thisNote];
+  tone(8, CanonTone[thisNote], noteDuration);
+  int pauseBetweenNotes = noteDuration * 1.30;
+  delay(pauseBetweenNotes);
+        // 準備下一個音調 
+     thisNote++;
+    
+  }
+  noTone(8);  // 播完後靜音
+
+}
+ void loop() {
+}
